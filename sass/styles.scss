@@ -1,0 +1,13 @@
+//This is called partial, it makes the styles in a modular way and allows them to be called when needed.
+@use "initial";
+@use "variables";
+@use "header";
+
+.main-container {
+  width: 375px;
+  margin: auto;
+  border: 1px solid red;
+  @media (min-width: 1115px) {
+      width: 1115px;
+  }
+}
