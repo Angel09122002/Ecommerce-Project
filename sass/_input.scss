@@ -1,0 +1,25 @@
+@use "variables" as v;
+@use "mixins" as m;
+
+.input {
+  display: flex;
+  height: 57px;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  &__minus {
+    @include m.inputQuantity(24px, 5px);
+  }
+  &__number {
+    width: 100%;
+    background-color: v.$Light-grayish-blue;
+    border: none;
+    font-size: 1.2em;
+    font-weight: 700;
+    font-size: v.$Font;
+    outline: none;
+    text-align: center;
+  }
+  &__plus {
+    @include m.inputQuantity(19px, 5px);
+  }
+}

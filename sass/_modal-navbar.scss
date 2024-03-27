@@ -1,0 +1,31 @@
+@use "variables";
+@use "mixins";
+
+.modal-navbar {
+  &__background {
+    // use include to incorporate the code that was create in the mixin file
+    // access to it, and call the styles that is required
+    @include mixins.modal-background;
+  }
+  background-color: variables.$White;
+  height: 100%;
+  width: 250px;
+  padding: 28px 24px;
+  &__items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 50px;
+    height: 200px;
+    list-style: none;
+  }
+  &__link {
+    color: variables.$Very-dark-blue;
+    font-weight: 700;
+    font-size: 1.1em;
+    text-decoration: none;
+  }
+  &__close-icon:hover {
+    cursor: pointer;
+  }
+}

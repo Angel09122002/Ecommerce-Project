@@ -12,6 +12,7 @@
       href="./images/favicon-32x32.png"
     />
     <link rel="stylesheet" href="./sass/styles.css" />
+
     <title>Frontend Mentor | E-commerce product page</title>
 
     <!-- Feel free to remove these styles or customize in your own stylesheet 👍 -->
@@ -29,44 +30,53 @@
   <body>
     <main class="main-container">
       <header class="header">
-        <img src="./images/icon-menu.svg" alt="burger-menu" />
-        <img src="./images/logo.svg" alt="Logo" />
+        <div class="header__navigation">
+          <img
+            class="header__menu"
+            src="./images/icon-menu.svg"
+            alt="burger-menu"
+          />
+          <img class="header__logo" src="./images/logo.svg" alt="Logo" />
+          <nav class="navbar">
+            <ul class="navbar__items">
+              <li><a href="#" class="navbar__link"> Collections</a></li>
+              <li><a href="#" class="navbar__link">Men</a></li>
+              <li><a href="#" class="navbar__link">Women</a></li>
+              <li><a href="#" class="navbar__link">About</a></li>
+              <li><a href="#" class="navbar__link">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
 
-        <nav class="navbar">
-          <ul class="navbar__items">
-            <li><a href="#" class="navbar__link"></a> Collections</li>
-            <li><a href="#" class="navbar__link"></a> Men</li>
-            <li><a href="#" class="navbar__link"></a> Women</li>
-            <li><a href="#" class="navbar__link"></a> About</li>
-            <li><a href="#" class="navbar__link"></a> Contact</li>
-          </ul>
-        </nav>
-        <!-- Modal -->
-        <div class="modal-navbar__backgound">
+        <!-- A modal is a pop-up window -->
+        <!-- Modal  Navbar responsive-->
+        <div class="modal-navbar__background">
           <nav class="modal-navbar">
             <img
               class="modal-navbar__close-icon"
               src="./images/icon-close.svg"
               alt="closeMenu-icon"
             />
-            <ul class="modal__items">
-              <li><a href="#" class="modal-navbar__link"></a> Collections</li>
-              <li><a href="#" class="modal-navbar__link"></a> Men</li>
-              <li><a href="#" class="modal-navbar__link"></a> Women</li>
-              <li><a href="#" class="modal-navbar__link"></a> About</li>
-              <li><a href="#" class="modal-navbar__link"></a> Contact</li>
+            <ul class="modal-navbar__items">
+              <li><a href="#" class="modal-navbar__link">Collections</a></li>
+              <li><a href="#" class="modal-navbar__link">Men</a></li>
+              <li><a href="#" class="modal-navbar__link">Women</a></li>
+              <li><a href="#" class="modal-navbar__link">About</a></li>
+              <li><a href="#" class="modal-navbar__link"> Contact</a></li>
             </ul>
           </nav>
         </div>
         <!-- Modal end -->
+
         <div class="header__cart-avatar">
           <div class="header__cart">
             <div class="header__cart--notification">3</div>
             <img src="./images/icon-cart.svg" alt="card-icon" />
           </div>
-          <img src="./images/image-avatar.png" alt="" />
+          <img class="header__avatar" src="./images/image-avatar.png" alt="" />
         </div>
       </header>
+
       <section class="content">
         <article class="gallery">
           <div class="gallery__img-container">
@@ -81,30 +91,30 @@
               alt="icon-next"
             />
           </div>
-          <div class="gallery_thumnails">
+          <div class="gallery__thumbnails">
             <img
               id="1"
-              class="gallery__thumnail"
+              class="gallery__thumbnail"
               src="./images/image-product-1-thumbnail.jpg"
-              alt="thumnail"
+              alt="thumbnail"
             />
             <img
               id="2"
-              class="gallery__thumnail"
+              class="gallery__thumbnail"
               src="./images/image-product-2-thumbnail.jpg"
-              alt="thumnail"
+              alt="thumbnail"
             />
             <img
               id="3"
-              class="gallery__thumnail"
+              class="gallery__thumbnail"
               src="./images/image-product-3-thumbnail.jpg"
-              alt="thumnail"
+              alt="thumbnail"
             />
             <img
               id="4"
-              class="gallery__thumnail"
+              class="gallery__thumbnail"
               src="./images/image-product-4-thumbnail.jpg"
-              alt="thumnail"
+              alt="thumbnail"
             />
           </div>
         </article>
@@ -129,15 +139,15 @@
                 src="./images/icon-minus.svg"
                 alt="icon-minus"
               />
-              <input class="input__number" type="number" value="0" />
+              <input class="input__number" type="text" value="0" />
               <img
                 class="input__plus"
                 src="./images/icon-plus.svg"
                 alt="icon-plus"
               />
             </div>
-            <button class="details__buttons">
-              <img src="./images/icon-cart.svg" alt="" />Add to cart
+            <button class="details__button">
+              <img src="./images/icon-cart white.svg" alt="" />Add to cart
             </button>
           </div>
         </article>
@@ -148,7 +158,11 @@
         <p class="cart-modal__title">Cart</p>
         <div class="cart-modal__checkout-container">
           <div class="cart-modal__details-container">
-            <img src="./images/image-product-1-thumbnail.jpg" alt="thumnail" />
+            <img
+              class="cart-modal__img"
+              src="./images/image-product-1-thumbnail.jpg"
+              alt="thumbnail"
+            />
             <div>
               <p class="cart-modal__product">Autumn Limited Edition...</p>
               <p class="cart-modal__price">$125 x3 <span>$375.00</span></p>
@@ -159,7 +173,7 @@
               alt="icon-delete"
             />
           </div>
-          <button class="cart-modal__delete">Checko ut</button>
+          <button class="cart-modal__checkout">Check out</button>
         </div>
       </div>
       <!--Cart Modal End -->
@@ -167,11 +181,13 @@
       <!-- Gallery Modal -->
       <div class="modal-gallery__background">
         <article class="modal-gallery">
-          <img
-            class="modal-gallery__close"
-            src="./images/icon-close.svg"
-            alt="icon-close"
-          />
+          <div class="modal-gallery__close-container">
+            <img
+              class="modal-gallery__close"
+              src="./images/icon-close.svg"
+              alt="icon-close"
+            />
+          </div>
           <div class="modal-gallery__img-container">
             <img
               class="modal-gallery__previous"
@@ -184,30 +200,30 @@
               alt="icon-next"
             />
           </div>
-          <div class="modal-gallery_thumnails">
+          <div class="modal-gallery__thumbnails">
             <img
               id="m1"
-              class="modal-gallery__thumnail"
+              class="modal-gallery__thumbnail"
               src="./images/image-product-1-thumbnail.jpg"
-              alt="thumnail"
+              alt="thumbnail"
             />
             <img
               id="m2"
-              class="modal-gallery__thumnail"
+              class="modal-gallery__thumbnail"
               src="./images/image-product-2-thumbnail.jpg"
-              alt="thumnail"
+              alt="thumbnail"
             />
             <img
               id="m3"
-              class="modal-gallery__thumnail"
+              class="modal-gallery__thumbnail"
               src="./images/image-product-3-thumbnail.jpg"
-              alt="thumnail"
+              alt="thumbnail"
             />
             <img
               id="m4"
-              class="modal-gallery__thumnail"
+              class="modal-gallery__thumbnail"
               src="./images/image-product-4-thumbnail.jpg"
-              alt="thumnail"
+              alt="thumbnail"
             />
           </div>
         </article>
@@ -223,5 +239,6 @@
         >Angel Quintero</a
       >.
     </footer>
+    <script src="./main.js"></script>
   </body>
 </html>
