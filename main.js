@@ -25,17 +25,21 @@ minusBtn.addEventListener("click", () => {
 const addToCartBtn = document.querySelector(".details__button");
 // The cartNotification variable will be changing according to the user input
 let cartNotification = document.querySelector(".header__cart--notification");
+// last value will take the initial value from cartNotification, transform it in a number using parseInt
+let lastValue = parseInt(cartNotification.innerText);
 
 //Call the addToCartBtn and then add a listener that will execute an arrow function
 addToCartBtn.addEventListener("click", () => {
-  // last value will take the initial value from cartNotification, transform it in a number using parseInt
-  let lastValue = parseInt(cartNotification.innerText);
   // Call the lastValue and add the input from the user (userInputNumber)
   lastValue = lastValue + userInputNumber;
+
+//This update the addCartBtn to the new value insert it to the html  
+  priceModal.innerHTML = `$125 x${lastValue} <span>$${lastValue*125}.00</span>`
 
   //Call the cartNotification variable and then use the property .innerText
   //insert the value of lastValue in the cartNotification variable
   cartNotification.innerText = lastValue;
+
   //The "header__cart--notification" has a display:none. Call the variable that contains the element and change the styles.
   cartNotification.style.display = "block";
   console.log(cartNotification);
@@ -45,11 +49,14 @@ addToCartBtn.addEventListener("click", () => {
 
 const CartIconBtn = document.querySelector(".header__cart");
 const cartModal = document.querySelector(".cart-modal");
+let priceModal = document.querySelector(".cart-modal__price");
 
 CartIconBtn.addEventListener("click", () => {
   //classList will return a list of the scss classes applied to the element
   // toggle alternate the class adding the new 'show' class
   cartModal.classList.toggle("show");
+// Insert the updated value for the cart 'lastValue variable' into the html
+// The price of the product is 125, multiply the 'lastValue' * 125 to get the price combine of the products in the cart
+  priceModal.innerHTML = `$125 x${lastValue} <span>$${lastValue*125}.00</span>`
 });
 
-let priceModal = document.querySelector(".cart-modal__price");
