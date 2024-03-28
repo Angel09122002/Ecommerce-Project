@@ -26,3 +26,8 @@
     gap: 124px;
   }
 }
+// if the user press the button to close it, this class will be display
+//  '.show' will be called from the Main.js to change the toggle
+.show {
+  display: block;
+}
