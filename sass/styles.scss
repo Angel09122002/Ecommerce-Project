@@ -1,6 +1,6 @@
 //This is called partial it makes the styles in a modular way and allows them to be called when needed
 @use "initial";
-@use "variables";
+@use "variables" as v;
 @use "header";
 @use "navbar";
 @use "modal-navbar";
@@ -12,9 +12,7 @@
 .main-container {
   position: relative;
   width: 375px;
-  margin-top: 20px;
   margin: auto;
-
   @media (min-width: 1115px) {
     width: 1115px;
   }
@@ -30,4 +28,11 @@
 //  '.show' will be called from the Main.js to change the toggle
 .show {
   display: block;
+}
+
+.cart-empty {
+  text-align: center;
+  font-weight: 700;
+  color: v.$Black-modal;
+  margin-top: 50px;
 }

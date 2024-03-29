@@ -95,7 +95,7 @@ body {
   list-style: none;
 }
 .navbar__link {
-  display: flex;
+  display: block;
   height: 112px;
   padding-top: 42px;
   color: hsl(219, 9%, 45%);
@@ -123,7 +123,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  display: none;
+  z-index: 1;
+  overflow: hidden;
 }
 .modal-navbar__items {
   display: flex;
@@ -158,10 +159,19 @@ body {
   width: 40px;
   height: 40px;
   padding: 12px;
-  border-radius: 50px;
+  border-radius: 50%;
 }
 .gallery__previous:hover {
+  animation: pulse 0.5s infinite alternate;
   cursor: pointer;
+}
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
 }
 @media (min-width: 1115px) {
   .gallery__previous {
@@ -176,10 +186,19 @@ body {
   width: 40px;
   height: 40px;
   padding: 12px;
-  border-radius: 50px;
+  border-radius: 50%;
 }
 .gallery__next:hover {
+  animation: pulse 0.5s infinite alternate;
   cursor: pointer;
+}
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
 }
 @media (min-width: 1115px) {
   .gallery__next {
@@ -404,7 +423,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  display: none;
+  z-index: 1;
+  overflow: hidden;
 }
 .modal-gallery__close-container {
   height: 30px;
@@ -447,10 +467,19 @@ body {
   width: 40px;
   height: 40px;
   padding: 12px;
-  border-radius: 50px;
+  border-radius: 50%;
 }
 .modal-gallery__previous:hover {
+  animation: pulse 0.5s infinite alternate;
   cursor: pointer;
+}
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
 }
 @media (min-width: 1115px) {
   .modal-gallery__previous {
@@ -465,10 +494,19 @@ body {
   width: 40px;
   height: 40px;
   padding: 12px;
-  border-radius: 50px;
+  border-radius: 50%;
 }
 .modal-gallery__next:hover {
+  animation: pulse 0.5s infinite alternate;
   cursor: pointer;
+}
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
 }
 @media (min-width: 1115px) {
   .modal-gallery__next {
@@ -479,7 +517,6 @@ body {
 .main-container {
   position: relative;
   width: 375px;
-  margin-top: 20px;
   margin: auto;
 }
 @media (min-width: 1115px) {
@@ -498,4 +535,11 @@ body {
 
 .show {
   display: block;
+}
+
+.cart-empty {
+  text-align: center;
+  font-weight: 700;
+  color: hsla(0, 0%, 0%, 0.5);
+  margin-top: 50px;
 }/*# sourceMappingURL=styles.css.map */

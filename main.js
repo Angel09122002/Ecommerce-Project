@@ -1,10 +1,9 @@
 // Changes of quantity assign to the input, add or subtract items from the cart
-let minusBtn = document.querySelector(".input__minus");
-let plusBtn = document.querySelector(".input__plus");
+const minusBtn = document.querySelector(".input__minus");
+const plusBtn = document.querySelector(".input__plus");
 let userInput = document.querySelector(".input__number");
 let userInputNumber = 0;
 
-//after the listener, it will run a arrow function that was added as a parameter
 plusBtn.addEventListener("click", () => {
   userInputNumber++;
   userInput.value = userInputNumber;
@@ -13,50 +12,182 @@ plusBtn.addEventListener("click", () => {
 
 minusBtn.addEventListener("click", () => {
   userInputNumber--;
-  //Make sure that the userInputNumber never goes below zero
   if (userInputNumber <= 0) {
     userInputNumber = 0;
   }
   userInput.value = userInputNumber;
   console.log(userInputNumber);
 });
-// Add the total od the products into the cart when the "add to cart" is press
 
+// Add the total of the products into the cart when the "add to cart" is press
 const addToCartBtn = document.querySelector(".details__button");
-// The cartNotification variable will be changing according to the user input
 let cartNotification = document.querySelector(".header__cart--notification");
-// last value will take the initial value from cartNotification, transform it in a number using parseInt
 let lastValue = parseInt(cartNotification.innerText);
 
-//Call the addToCartBtn and then add a listener that will execute an arrow function
 addToCartBtn.addEventListener("click", () => {
-  // Call the lastValue and add the input from the user (userInputNumber)
   lastValue = lastValue + userInputNumber;
-
-//This update the addCartBtn to the new value insert it to the html  
-  priceModal.innerHTML = `$125 x${lastValue} <span>$${lastValue*125}.00</span>`
-
-  //Call the cartNotification variable and then use the property .innerText
-  //insert the value of lastValue in the cartNotification variable
   cartNotification.innerText = lastValue;
-
   //The "header__cart--notification" has a display:none. Call the variable that contains the element and change the styles.
   cartNotification.style.display = "block";
+  drawProductModal();
+  priceModal.innerHTML = `$125 x${lastValue} <span>$${
+    lastValue * 125
+  }.00</span>`;
   console.log(cartNotification);
 });
 
 // Gallery modal logic
-
 const CartIconBtn = document.querySelector(".header__cart");
 const cartModal = document.querySelector(".cart-modal");
-let priceModal = document.querySelector(".cart-modal__price");
+const productContainer = document.querySelector(
+  ".cart-modal__checkout-container"
+);
 
 CartIconBtn.addEventListener("click", () => {
-  //classList will return a list of the scss classes applied to the element
-  // toggle alternate the class adding the new 'show' class
   cartModal.classList.toggle("show");
-// Insert the updated value for the cart 'lastValue variable' into the html
-// The price of the product is 125, multiply the 'lastValue' * 125 to get the price combine of the products in the cart
-  priceModal.innerHTML = `$125 x${lastValue} <span>$${lastValue*125}.00</span>`
+
+  if (lastValue == 0) {
+    productContainer.innerHTML = '<p class="cart-empty">Your cart is empty</p>';
+  } else {
+    drawProductModal();
+  }
 });
 
+// Change the thumbnail images
+const imgContainer = document.querySelector(".gallery__img-container");
+const previousGalleryBtn = document.querySelector(".gallery__previous");
+const nextGalleryBtn = document.querySelector(".gallery__next");
+let imgIndex = 1;
+
+nextGalleryBtn.addEventListener("click", () => {
+  changeNextImg(imgContainer);
+});
+previousGalleryBtn.addEventListener("click", () => {
+  changePreviousImg(imgContainer);
+});
+
+// change Thumbnails img
+let thumbnails = document.querySelectorAll(".gallery__thumbnail");
+// Thumbnails is a nodeList, it need to be translate to a array.
+thumbnails = [...thumbnails];
+
+thumbnails.forEach((thumbnails) => {
+  thumbnails.addEventListener("click", (event) => {
+    console.log(event.target.id);
+    imgContainer.style.backgroundImage = `url('../images/image-product-${event.target.id}.jpg')`;
+  });
+});
+
+// change Thumbnails img in the  modal
+
+let modalThumbnail = document.querySelectorAll(".modal-gallery__thumbnail");
+const modalImgContainer = document.querySelector(
+  ".modal-gallery__img-container"
+);
+
+modalThumbnail = [...modalThumbnail];
+
+modalThumbnail.forEach((modalThumbnail) => {
+  modalThumbnail.addEventListener("click", (event) => {
+    console.log(event.target.id.slice(-1));
+
+    modalImgContainer.style.backgroundImage = `url('../images/image-product-${event.target.id.slice(
+      -1
+    )}.jpg')`;
+  });
+});
+
+// change Main img of the modal with the arrow button
+const PreviousModalBtn = document.querySelector(".modal-gallery__previous");
+const NextModalBtn = document.querySelector(".modal-gallery__next");
+
+PreviousModalBtn.addEventListener("click", () => {
+  changePreviousImg(modalImgContainer);
+});
+NextModalBtn.addEventListener("click", () => {
+  changeNextImg(modalImgContainer);
+});
+
+// Show the modal gallery when the user click in the main image
+const imgModal = document.querySelector(".modal-gallery__background");
+const closeModalBtn = document.querySelector(".modal-gallery__close");
+imgContainer.addEventListener("click", () => {
+  imgModal.style.display = "grid";
+});
+
+closeModalBtn.addEventListener("click", () => {
+  imgModal.style.display = "none";
+});
+
+// Open hamburger menu
+const hamburgerMenu = document.querySelector(".header__menu");
+const modalNavbar = document.querySelector(".modal-navbar__background");
+const closeModalNavbar = document.querySelector(".modal-navbar__close-icon");
+
+modalNavbar.style.display = "none";
+
+hamburgerMenu.addEventListener("click", () => {
+  console.log("abrir modal");
+  modalNavbar.style.display = "block";
+});
+
+closeModalNavbar.addEventListener("click", () => {
+  modalNavbar.style.display = "none";
+});
+// functions
+
+// Delete cart content
+function deleteProduct() {
+  const deleteProductBtn = document.querySelector(".cart-modal__delete");
+
+  deleteProductBtn.addEventListener("click", () => {
+    productContainer.innerHTML = '<p class="cart-empty">Your cart is empty</p>';
+    lastValue = 0;
+    cartNotification.innerText = lastValue;
+  });
+}
+
+function drawProductModal() {
+  productContainer.innerHTML = `
+        <div class="cart-modal__details-container">
+        <img
+        class="cart-modal__img"
+        src="./images/image-product-1-thumbnail.jpg"
+        alt="thumbnail"
+        />
+        <div>
+        <p class="cart-modal__product">Autumn Limited Edition...</p>
+        <p class="cart-modal__price">$125 x3 <span>$375.00</span></p>
+        </div>
+        <img
+        class="cart-modal__delete"
+        src="./images/icon-delete.svg"
+                alt="icon-delete"
+              />
+  </div>
+  <button class="cart-modal__checkout">Check out</button>`;
+
+  deleteProduct();
+  let priceModal = document.querySelector(".cart-modal__price");
+  priceModal.innerHTML = `$125 x${lastValue} <span>$${
+    lastValue * 125
+  }.00</span>`;
+}
+
+function changeNextImg(imgContainer) {
+  if (imgIndex == 4) {
+    imgIndex = 1;
+  } else {
+    imgIndex++;
+  }
+  imgContainer.style.backgroundImage = `url('../images/image-product-${imgIndex}.jpg')`;
+}
+
+function changePreviousImg(imgContainer) {
+  if (imgIndex == 1) {
+    imgIndex = 4;
+  } else {
+    imgIndex--;
+  }
+  imgContainer.style.backgroundImage = `url('../images/image-product-${imgIndex}.jpg')`;
+}

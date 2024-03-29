@@ -7,7 +7,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  display: none;
+  z-index: 1;
+  overflow: hidden;
 }
 // Mixins can receive parameters, it allows modification to the reusable code depending on those parameters
 @mixin img-btn($top, $left, $showDesktop) {
@@ -18,9 +19,18 @@
   width: 40px;
   height: 40px;
   padding: 12px;
-  border-radius: 50px;
+  border-radius: 50%;
   &:hover {
+    animation: pulse 0.5s infinite alternate;
     cursor: pointer;
+    @keyframes pulse {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.1);
+      }
+    }
   }
   @media (min-width: 1115px) {
     @if ($showDesktop == true) {
@@ -34,7 +44,6 @@
 @mixin inputQuantity($pv, $ph) {
   padding: $pv $ph;
   background-color: v.$Light-grayish-blue;
-
   height: 100%;
   width: 25px;
   &:hover {
