@@ -1,7 +1,6 @@
 
 # Frontend Mentor - E-commerce product page
 
-# Weather App
 
 This is a simple weather application built using React. It allows users to search for the weather of a specific city and displays the current temperature, location, humidity, and wind speed. Additionally, it dynamically changes the weather icon based on the current weather condition.
 
